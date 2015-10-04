@@ -82,15 +82,4 @@ public class Percolation {
     public boolean percolates() {           // does the system percolate?
         return perc;
     }
-
-    public static void main(String[] args) {
-        for (int N = 0; N < 1000; N++) {
-            int sum = 0;
-            for (int i = 1; i <= 4 * N; i = i * 4)
-                for (int j = 0; j < i; j++)
-                    sum++;
-            System.out.println(sum);
-        }
-
-    }
 }
