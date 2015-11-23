@@ -17,7 +17,7 @@ public class BaseballElimination {
     private final boolean[]            eliminated;
     private final List[]               certs;
 
-    public class MyHashMap extends HashMap<String, Integer> {
+    private class MyHashMap extends HashMap<String, Integer> {
 
         @Override
         public Integer get(Object key) {
@@ -61,7 +61,9 @@ public class BaseballElimination {
                         certs[i] = new ArrayList<>();
                         for (int k = 0; k < n; k++) {
                             if (fordFulkerson.inCut(k + (n - 1) * (n - 2) / 2 + 1)) {
-                                certs[i].add(teams.get(k));
+                                if (k < i) certs[i].add(teams.get(k));
+                                else certs[i].add(teams.get(k+1));
+
                             }
                         }
                         break;
@@ -143,7 +145,7 @@ public class BaseballElimination {
     }
 
     public static void main(String[] args) {
-        BaseballElimination division = new BaseballElimination("/Users/kliner/Downloads/baseball/teams54.txt");
+        BaseballElimination division = new BaseballElimination("/Users/kliner/Downloads/baseball/teams4a.txt");
         for (String team : division.teams()) {
             if (division.isEliminated(team)) {
                 StdOut.print(team + " is eliminated by the subset R = { ");
